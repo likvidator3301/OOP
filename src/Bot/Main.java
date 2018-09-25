@@ -8,6 +8,7 @@ public class Main
 {
     public static void main(String[] args) throws FileNotFoundException {
         var console = new Console();
+        console.addDataSource(new ApiVK());
         console.startDialog();
     }
 }
