@@ -1,9 +1,10 @@
 package Bot;
 
-import static java.lang.System.*;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.*;
 import java.util.Scanner;
+import java.util.List;
 import java.util.ArrayList;
 
 
@@ -11,18 +12,21 @@ import java.util.ArrayList;
 public class Console {
 
     private String userName;
-    private String mystr = "Ятоппогромист";
     private ArrayList<String> listOfNames;
     private ArrayList<String> tags;
     private Scanner scanner;
-    private ArrayList<IDataSource> dataSources;
+    private List<IDataSource> dataSources;
     private boolean needToAddUser;
+    private PrintStream out;
+    private InputStream in;
 
     private static final String pathToFileWithNames = "info.txt";
     private static final String articleDelimiter = "-----------------------------------------------";
 
 
-    public Console() throws FileNotFoundException {
+    public Console(PrintStream out, InputStream in) throws FileNotFoundException {
+        this.out = out;
+        this.in = in;
         scanner = new Scanner(in);
         out.println("Привет, представься, пожалуйста!");
         userName = scanner.nextLine();
