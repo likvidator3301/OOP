@@ -1,19 +1,14 @@
 package Bot;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.io.*;
-import java.util.Scanner;
-import java.util.List;
-import java.util.ArrayList;
-
+import java.util.*;
 
 
 public class Console {
 
     private String userName;
-    private ArrayList<String> listOfNames;
     private ArrayList<String> tags;
+    private HashMap<String, String> dictOfNameAndTags;
     private Scanner scanner;
     private List<IDataSource> dataSources;
     private boolean needToAddUser;
@@ -30,15 +25,29 @@ public class Console {
         scanner = new Scanner(in);
         out.println("Привет, представься, пожалуйста!");
         userName = scanner.nextLine();
-        listOfNames = getLinesFromFile(pathToFileWithNames);
+        var data = getLinesFromFile(pathToFileWithNames);
+        dictOfNameAndTags = new HashMap<String, String>();
+        for (var item: data) {
+            var nameAndTags = item.split("-");
+            if (nameAndTags.length == 1)
+                dictOfNameAndTags.put(nameAndTags[0],"");
+            else
+                dictOfNameAndTags.put(nameAndTags[0], nameAndTags[1]);
+        }
         tags = getLinesFromFile("tags.txt");
         dataSources = new ArrayList<IDataSource>();
     }
 
     public void startDialog() {
-        if(listOfNames.contains(userName))
+        if(dictOfNameAndTags.containsKey(userName)) {
             out.println("О, да я тебя помню!");
+            if (dictOfNameAndTags.get(userName).equals(""))
+                out.println("Ты ничего не искал(");
+            else
+                out.println("Вот что тебе было интересно " + dictOfNameAndTags.get(userName));
+        }
         else {
+            dictOfNameAndTags.put(userName, "");
             out.println("А ты новенький, что тебе интересно?");
             needToAddUser = true;
         }
@@ -56,11 +65,16 @@ public class Console {
 
             var data = getInfoByTag(needTag);
 
-            if (tags.contains(needTag))
+            if (tags.contains(needTag)) {
+                if (!dictOfNameAndTags.get(userName).equals(""))
+                    dictOfNameAndTags.put(userName, dictOfNameAndTags.get(userName) + " " + needTag);
+                else
+                    dictOfNameAndTags.put(userName, needTag);
                 for (var article : data) {
                     out.println(articleDelimiter);
                     out.println(article);
                 }
+            }
             else
                 out.println("Извини, я не знаю такого тега");
         }
@@ -81,13 +95,21 @@ public class Console {
     }
 
     private void stopDialog() {
-        if (needToAddUser)
-            writeToFile(pathToFileWithNames, "\n" + userName);
+        var result = new StringBuilder();
+        for(var key: dictOfNameAndTags.keySet()) {
+            result.append(key);
+            if (!dictOfNameAndTags.get(key).equals("")) {
+                result.append("-");
+                result.append(dictOfNameAndTags.get(key));
+            }
+            result.append('\n');
+        }
+        writeToFile(pathToFileWithNames, result.toString());
     }
 
     private void writeToFile(String pathToFile, String info) {
         try {
-            var fos = new FileOutputStream(pathToFile, true);
+            var fos = new FileOutputStream(pathToFile);
             var buffer = info.getBytes();
 
             fos.write(buffer, 0, buffer.length);
