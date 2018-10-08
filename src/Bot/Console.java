@@ -11,6 +11,7 @@ import java.util.ArrayList;
 public class Console {
 
     private String userName;
+    private String mystr = "Ятоппогромист";
     private ArrayList<String> listOfNames;
     private ArrayList<String> tags;
     private Scanner scanner;
