@@ -66,10 +66,11 @@ public class Console {
             var data = getInfoByTag(needTag);
 
             if (tags.contains(needTag)) {
-                if (!dictOfNameAndTags.get(userName).equals(""))
+                if (!dictOfNameAndTags.get(userName).equals("") && !dictOfNameAndTags.get(userName).contains(needTag))
                     dictOfNameAndTags.put(userName, dictOfNameAndTags.get(userName) + " " + needTag);
                 else
-                    dictOfNameAndTags.put(userName, needTag);
+                    if (dictOfNameAndTags.get(userName).equals(""))
+                        dictOfNameAndTags.put(userName, needTag);
                 for (var article : data) {
                     out.println(articleDelimiter);
                     out.println(article);
