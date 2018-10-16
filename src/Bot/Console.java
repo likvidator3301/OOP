@@ -27,10 +27,10 @@ public class Console {
         userName = scanner.nextLine();
         var data = getLinesFromFile(pathToFileWithNames);
         dictOfNameAndTags = new HashMap<String, String>();
-        for (var item: data) {
+        for (var item : data) {
             var nameAndTags = item.split("-");
             if (nameAndTags.length == 1)
-                dictOfNameAndTags.put(nameAndTags[0],"");
+                dictOfNameAndTags.put(nameAndTags[0], "");
             else
                 dictOfNameAndTags.put(nameAndTags[0], nameAndTags[1]);
         }
@@ -38,22 +38,21 @@ public class Console {
         dataSources = new ArrayList<IDataSource>();
     }
 
-    public void startDialog() {
-        if(dictOfNameAndTags.containsKey(userName)) {
+    public void startDialog() throws IOException {
+        if (dictOfNameAndTags.containsKey(userName)) {
             out.println("О, да я тебя помню!");
             if (dictOfNameAndTags.get(userName).equals(""))
                 out.println("Ты ничего не искал(");
             else
                 out.println("Вот что тебе было интересно " + dictOfNameAndTags.get(userName));
-        }
-        else {
+        } else {
             dictOfNameAndTags.put(userName, "");
             out.println("А ты новенький, что тебе интересно?");
             needToAddUser = true;
         }
         out.println("Выбери интересующий тебя тег из предложенных:");
 
-        while(true) {
+        while (true) {
             for (var tag : tags) {
                 out.println(tag);
             }
@@ -63,20 +62,18 @@ public class Console {
             if (needTag.equals("/stop"))
                 break;
 
-            var data = getInfoByTag(needTag);
-
             if (tags.contains(needTag)) {
                 if (!dictOfNameAndTags.get(userName).equals("") && !dictOfNameAndTags.get(userName).contains(needTag))
                     dictOfNameAndTags.put(userName, dictOfNameAndTags.get(userName) + " " + needTag);
-                else
-                    if (dictOfNameAndTags.get(userName).equals(""))
-                        dictOfNameAndTags.put(userName, needTag);
+                else if (dictOfNameAndTags.get(userName).equals(""))
+                    dictOfNameAndTags.put(userName, needTag);
+                var data = getInfoByTag(needTag);
                 for (var article : data) {
                     out.println(articleDelimiter);
-                    out.println(article);
+                    out.println(article.first);
+                    out.println(article.second);
                 }
-            }
-            else
+            } else
                 out.println("Извини, я не знаю такого тега");
         }
         stopDialog();
@@ -87,17 +84,19 @@ public class Console {
         dataSources.add(dataSource);
     }
 
-    private ArrayList<String> getInfoByTag(String tag)
-    {
-        var data = new ArrayList<String>();
-        for (var dataSource : dataSources)
-            data.add(dataSource.getInfoByTag(tag));
+    private ArrayList<Pair<String, String>> getInfoByTag(String tag) throws IOException {
+        var data = new ArrayList<Pair<String, String>>();
+        for (var dataSource : dataSources) {
+            for (var pair : dataSource.getInfoByTag(tag)) {
+                data.add(pair);
+            }
+        }
         return data;
     }
 
     private void stopDialog() {
         var result = new StringBuilder();
-        for(var key: dictOfNameAndTags.keySet()) {
+        for (var key : dictOfNameAndTags.keySet()) {
             result.append(key);
             if (!dictOfNameAndTags.get(key).equals("")) {
                 result.append("-");

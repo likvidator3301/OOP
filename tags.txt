@@ -1,5 +1,2 @@
-C#
-JavaScript
-Python
-ACM
-CTF
+javascript
+python

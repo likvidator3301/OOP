@@ -1,7 +1,10 @@
 package Bot;
 
+import java.io.IOException;
+import java.util.ArrayList;
+
 public interface IDataSource {
 
-    String getInfoByTag(String tag);
+    ArrayList<Pair<String, String>> getInfoByTag(String tag) throws IOException;
 
 }
