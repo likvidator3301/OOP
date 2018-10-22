@@ -4,6 +4,7 @@ import java.io.*;
 import java.util.*;
 
 
+
 public class Console {
 
     private String userName;
@@ -44,7 +45,8 @@ public class Console {
             if (dictOfNameAndTags.get(userName).equals(""))
                 out.println("Ты ничего не искал(");
             else
-                out.println("Вот что тебе было интересно " + dictOfNameAndTags.get(userName));
+                out.println("Вот что тебе было интересно: " + dictOfNameAndTags.get(userName));
+            out.println();
         } else {
             dictOfNameAndTags.put(userName, "");
             out.println("А ты новенький, что тебе интересно?");
@@ -56,6 +58,7 @@ public class Console {
             for (var tag : tags) {
                 out.println(tag);
             }
+            out.println();
             out.println("Введи /stop если хочешь выйти");
             var needTag = scanner.nextLine();
 
@@ -75,6 +78,7 @@ public class Console {
                 }
             } else
                 out.println("Извини, я не знаю такого тега");
+            out.println();
         }
         stopDialog();
         out.println("Возвращайтесь, " + userName);
