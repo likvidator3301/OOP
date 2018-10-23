@@ -1,21 +1,33 @@
 package Bot;
 
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 public class StringInputStream extends InputStream {
 
-    private String data = "Анатолий";
-    private byte[] bData = data.getBytes();
+    private List<String> data;
+    private byte[] bData;
     private int pointer = 0;
+    private int dataPointer = 0;
 
-    public int read() {
-        /*if (pointer >= data.length()) {
-            pointer = 0;
-            data = "/stop";
-            bData = data.getBytes();
-            return -1;
-        }*/
-        return bData[pointer++];
+    public void setData(List<String> data) {
+        this.data = data;
+        bData = this.data.get(dataPointer++).getBytes();
     }
 
+    public void reserPointers() {
+        pointer = 0;
+        dataPointer = 0;
+    }
+
+    public int read() {
+        if (pointer >= bData.length) {
+            pointer = 0;
+            if (++dataPointer < data.size())
+                bData = data.get(dataPointer).getBytes();
+            return '\n';
+        }
+        return bData[pointer++];
+    }
 }
