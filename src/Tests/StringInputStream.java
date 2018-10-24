@@ -1,4 +1,4 @@
-package Bot;
+package Tests;
 
 import java.io.InputStream;
 import java.util.ArrayList;

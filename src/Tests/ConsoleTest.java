@@ -1,5 +1,7 @@
-package Bot;
+package Tests;
 
+import Bot.Console;
+import DataSources.SimpleDataSource;
 import org.junit.Assert;
 import org.junit.Test;
 

@@ -1,4 +1,6 @@
-package Bot;
+package DataSources;
+
+import DataStructure.Pair;
 
 import java.io.IOException;
 import java.util.ArrayList;

@@ -1,5 +1,9 @@
 package Bot;
 
+import DataSources.IDataSource;
+import DataStructure.Pair;
+import Utils.FileWorker;
+
 import java.io.*;
 import java.util.*;
 
@@ -26,7 +30,7 @@ public class Console {
         scanner = new Scanner(in);
         out.println("Привет, представься, пожалуйста!");
         userName = scanner.nextLine();
-        var data = getLinesFromFile(pathToFileWithNames);
+        var data = FileWorker.getLinesFromFile(pathToFileWithNames);
         dictOfNameAndTags = new HashMap<String, String>();
         for (var item : data) {
             var nameAndTags = item.split("-");
@@ -35,7 +39,7 @@ public class Console {
             else
                 dictOfNameAndTags.put(nameAndTags[0], nameAndTags[1]);
         }
-        tags = getLinesFromFile("tags.txt");
+        tags = FileWorker.getLinesFromFile("tags.txt");
         dataSources = new ArrayList<IDataSource>();
     }
 
@@ -108,32 +112,7 @@ public class Console {
             }
             result.append('\n');
         }
-        writeToFile(pathToFileWithNames, result.toString());
+        FileWorker.writeToFile(pathToFileWithNames, result.toString());
     }
 
-    private void writeToFile(String pathToFile, String info) {
-        try {
-            var fos = new FileOutputStream(pathToFile);
-            var buffer = info.getBytes();
-
-            fos.write(buffer, 0, buffer.length);
-        } catch (IOException e) {
-            out.println("Ошибка при записи в файл");
-        }
-    }
-
-    private ArrayList<String> getLinesFromFile(String pathToFile) {
-        var result = new ArrayList<String>();
-        try {
-            var fis = new FileInputStream(pathToFile);
-            var br = new BufferedReader(new InputStreamReader(fis));
-            String strLine;
-            while ((strLine = br.readLine()) != null)
-                result.add(strLine);
-
-        } catch (IOException e) {
-            out.println("Ошибка при чтении файла");
-        }
-        return result;
-    }
 }

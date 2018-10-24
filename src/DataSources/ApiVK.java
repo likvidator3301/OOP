@@ -1,15 +1,13 @@
-package Bot;
+package DataSources;
 
+import DataStructure.*;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
-import com.google.gson.internal.LinkedTreeMap;
 
 import javax.net.ssl.HttpsURLConnection;
 import java.io.*;
-import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 
 public class ApiVK implements IDataSource {
@@ -70,16 +68,5 @@ public class ApiVK implements IDataSource {
                 return result;
         }
         return result;
-    }
-
-    private void writeToFile(String pathToFile, String info) {
-        try {
-            var fos = new FileOutputStream(pathToFile);
-            var buffer = info.getBytes();
-
-            fos.write(buffer, 0, buffer.length);
-        } catch (IOException e) {
-            System.out.println("Ошибка при записи в файл");
-        }
     }
 }

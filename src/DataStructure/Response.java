@@ -1,4 +1,4 @@
-package Bot;
+package DataStructure;
 
 import com.google.gson.JsonArray;
 

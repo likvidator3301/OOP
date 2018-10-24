@@ -1,4 +1,4 @@
-package Bot;
+package Tests;
 
 import java.io.PrintStream;
 import java.util.ArrayList;
