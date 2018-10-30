@@ -17,8 +17,8 @@ public class ConsoleTest {
     public void setUp() throws Exception {
         var data = new ArrayList<String>();
         data.add("Anatolii");
-        data.add("blablabla");
         data.add("python");
+        data.add("wrong tag");
         data.add("/stop");
         out = new StringPrintStream();
         in = new StringInputStream();
@@ -34,6 +34,7 @@ public class ConsoleTest {
         Assert.assertEquals(output.get(0), "Привет, представься, пожалуйста!");
         Assert.assertEquals(output.get(1), "О, да я тебя помню!");
         Assert.assertEquals(output.get(2), "Ты ничего не искал(");
+        //перед каждый запуском убедитесь что у Anatolii нет тега
     }
 
     @Test
@@ -51,7 +52,12 @@ public class ConsoleTest {
     }
 
     @Test
+    public void TestWrongTag(){
+        Assert.assertEquals(output.get(27), "Извини, я не знаю такого тега");
+    }
+
+    @Test
     public void TestEndDialoge() {
-        Assert.assertEquals(output.get(27), "Возвращайтесь, Anatolii");
+        Assert.assertEquals(output.get(38), "Возвращайтесь, Anatolii");
     }
 }

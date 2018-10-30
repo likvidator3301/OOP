@@ -13,7 +13,7 @@ public class StringInputStream extends InputStream {
 
     public void setData(List<String> data) {
         this.data = data;
-        bData = this.data.get(dataPointer++).getBytes();
+        bData = this.data.get(dataPointer).getBytes();
     }
 
     public void reserPointers() {
