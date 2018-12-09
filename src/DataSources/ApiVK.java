@@ -38,7 +38,7 @@ public class ApiVK implements IDataSource {
         return response.toString();
     }
 
-    private ArrayList<Pair<String, String>> parseJson (String data) {
+    public ArrayList<Pair<String, String>> parseJson (String data) {
         var gson = new Gson();
         var clear_response = gson.fromJson(data, JsonArray.class);
         var apiVkResponse = gson.fromJson(clear_response.get(0).toString(), ApiVkResponse.class);

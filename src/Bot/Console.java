@@ -29,7 +29,6 @@ public class Console {
         this.in = in;
         scanner = new Scanner(in);
         out.println("Привет, представься, пожалуйста!");
-        userName = scanner.nextLine();
         var data = FileWorker.getLinesFromFile(pathToFileWithNames);
         dictOfNameAndTags = new HashMap<String, String>();
         for (var item : data) {

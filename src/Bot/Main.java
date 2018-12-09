@@ -1,6 +1,7 @@
 package Bot;
 
 import DataSources.ApiVK;
+import org.junit.Test;
 
 import java.io.IOException;
 
