@@ -19,8 +19,7 @@ public class TelegramInputStream extends InputStream {
         if (pointer >= bData.length)
         {
             pointer = 0;
-            if (++dataPointer < data.size())
-                bData = data.get(dataPointer).getBytes();
+            dataPointer++;
             return '\n';
         }
         return bData[pointer++];

@@ -38,7 +38,7 @@ public class Telegram extends TelegramLongPollingBot {
 
     @Override
     public void onUpdateReceived(Update e) {
-        Message msg = e.getMessage(); // Это нам понадобится
+        Message msg = e.getMessage();
         String txt = msg.getText();
     }
 
