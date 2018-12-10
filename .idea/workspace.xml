@@ -422,6 +422,8 @@
         <item itemvalue="Application.Telegram" />
         <item itemvalue="JUnit.JsonTest" />
         <item itemvalue="JUnit.ConsoleTest" />
+        <item itemvalue="Application.Telegram" />
+        <item itemvalue="JUnit.JsonTest" />
       </list>
     </recent_temporary>
   </component>
