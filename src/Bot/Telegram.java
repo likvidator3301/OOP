@@ -16,21 +16,6 @@ import java.io.IOException;
 
 public class Telegram extends TelegramLongPollingBot {
 
-    private static Console console;
-    private static TelegramInputStream input;
-    private static TelegramPrintStream print;
-
-    public static void main(String[] args) throws FileNotFoundException, IOException {
-        ApiContextInitializer.init();
-        TelegramBotsApi botsApi = new TelegramBotsApi();
-
-        try {
-            botsApi.registerBot(new Telegram());
-        } catch (TelegramApiException e) {
-            e.printStackTrace();
-        }
-    }
-
     @Override
     public String getBotUsername() {
         return "NewITNewsBot";
@@ -38,8 +23,29 @@ public class Telegram extends TelegramLongPollingBot {
 
     @Override
     public void onUpdateReceived(Update e) {
-        Message msg = e.getMessage(); // Это нам понадобится
-        String txt = msg.getText();
+        var msg = e.getMessage(); // Это нам понадобится
+        var chatId = msg.getChatId();
+        var txt = msg.getText();
+        if (!Main.telegramConsoleDictionary.containsKey(chatId.toString())) {
+            var myThready = new Thread(new Runnable()
+            {
+                public void run()
+                {
+                    try {
+                    var console = new Console(new TelegramPrintStream(chatId), new TelegramInputStream(chatId), chatId);
+                    Main.telegramConsoleDictionary.put(chatId.toString(), console);
+                    console.startDialog();
+                    } catch (IOException e1) {
+                        e1.printStackTrace();
+                    }
+                }
+            });
+            myThready.start();
+        }
+        else {
+            var in = Main.telegramConsoleDictionary.get(chatId.toString()).in;
+            ((TelegramInputStream)in).addData(txt);
+        }
     }
 
     @Override
@@ -48,7 +54,7 @@ public class Telegram extends TelegramLongPollingBot {
     }
 
     private void sendMsg(Message msg, String text) {
-        SendMessage s = new SendMessage();
+        var s = new SendMessage();
         s.setChatId(msg.getChatId());
         s.setText(text);
         try {

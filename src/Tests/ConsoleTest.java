@@ -2,9 +2,9 @@ package Tests;
 
 import Bot.Console;
 import DataSources.SimpleDataSource;
-import org.junit.Assert;
+/*import org.junit.Assert;
 import org.junit.Test;
-
+*/
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +13,7 @@ public class ConsoleTest {
     private StringInputStream in;
     private List<String> output;
 
-    @org.junit.Before
+    /*@org.junit.Before
     public void setUp() throws Exception {
         var data = new ArrayList<String>();
         data.add("Anatolii");
@@ -60,4 +60,5 @@ public class ConsoleTest {
     public void TestEndDialoge() {
         Assert.assertEquals(output.get(38), "Возвращайтесь, Anatolii");
     }
+    */
 }

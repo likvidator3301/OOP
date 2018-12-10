@@ -1,17 +1,29 @@
 package Bot;
 
+import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+
 import java.io.PrintStream;
 import java.util.ArrayList;
 
 public class TelegramPrintStream extends PrintStream {
     public ArrayList<String> output;
 
-    public TelegramPrintStream(){
+    private long chatId;
+
+    public TelegramPrintStream(long chatId){
         super(System.out);
-        output = new ArrayList<String>();
+        this.chatId = chatId;
     }
 
     public void println(String x) {
-        output.add(x);
+        SendMessage s = new SendMessage();
+        s.setChatId(chatId);
+        s.setText(x);
+        try {
+            Main.telegram.execute(s);
+        } catch (TelegramApiException e){
+            e.printStackTrace();
+        }
     }
 }

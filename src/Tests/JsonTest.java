@@ -1,13 +1,14 @@
 package Tests;
-
+/*
 import org.junit.Assert;
 import org.junit.Test;
+*/
 import DataSources.ApiVK;
 import DataStructure.Pair;
 import java.util.ArrayList;
 
 public class JsonTest {
-
+/*
     private String json = "[{\"response\":{\"items\":[{\"text\": \"bla\", \"attachments\":[{ \"link\":{\"url\":\"blabla\"}}]}]}}]";
     private ArrayList<Pair<String, String>> result = new ArrayList<Pair<String, String>>();
 
@@ -25,4 +26,5 @@ public class JsonTest {
         Assert.assertEquals("bla blabla", result.get(0).toString());
         Assert.assertEquals(1, result.size());
     }
+    */
 }

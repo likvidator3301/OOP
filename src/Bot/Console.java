@@ -11,24 +11,26 @@ import java.util.*;
 
 public class Console {
 
+    public PrintStream out;
+    public InputStream in;
+    public long chatId;
+
     private String userName;
     private ArrayList<String> tags;
     private HashMap<String, String> dictOfNameAndTags;
     private Scanner scanner;
     private List<IDataSource> dataSources;
     private boolean needToAddUser;
-    private PrintStream out;
-    private InputStream in;
 
     private static final String pathToFileWithNames = "info.txt";
     private static final String articleDelimiter = "-----------------------------------------------";
 
 
-    public Console(PrintStream out, InputStream in) throws FileNotFoundException {
+    public Console(PrintStream out, InputStream in, long chatId) throws FileNotFoundException {
         this.out = out;
         this.in = in;
+        this.chatId = chatId;
         scanner = new Scanner(in);
-        out.println("Привет, представься, пожалуйста!");
         var data = FileWorker.getLinesFromFile(pathToFileWithNames);
         dictOfNameAndTags = new HashMap<String, String>();
         for (var item : data) {
@@ -43,6 +45,8 @@ public class Console {
     }
 
     public void startDialog() throws IOException {
+        out.println("Привет, представься, пожалуйста!");
+        userName = scanner.nextLine();
         if (dictOfNameAndTags.containsKey(userName)) {
             out.println("О, да я тебя помню!");
             if (dictOfNameAndTags.get(userName).equals(""))

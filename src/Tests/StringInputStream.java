@@ -22,12 +22,12 @@ public class StringInputStream extends InputStream {
     }
 
     public int read() {
-        if (pointer >= bData.length) {
+    /*if (pointer >= bData.length) {
             pointer = 0;
             if (++dataPointer < data.size())
                 bData = data.get(dataPointer).getBytes();
             return '\n';
-        }
+        }*/
         return bData[pointer++];
     }
 }
