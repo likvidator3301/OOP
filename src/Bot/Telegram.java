@@ -33,7 +33,10 @@ public class Telegram extends TelegramLongPollingBot {
                 {
                     try {
                     var console = new Console(new TelegramPrintStream(chatId), new TelegramInputStream(chatId), chatId);
+                    var vkApi = new ApiVK();
+                    console.addDataSource(vkApi);
                     Main.telegramConsoleDictionary.put(chatId.toString(), console);
+
                     console.startDialog();
                     } catch (IOException e1) {
                         e1.printStackTrace();

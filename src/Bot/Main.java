@@ -28,5 +28,8 @@ public class Main
             System.out.println("Не конектед");
             e.printStackTrace();
         }
+        /*var console = new Console(System.out, System.in, 0);
+        console.startDialog();*/
+
     }
 }

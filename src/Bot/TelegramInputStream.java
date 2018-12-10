@@ -14,6 +14,7 @@ public class TelegramInputStream extends InputStream {
     private long chatId;
     private boolean canReturn;
     private boolean needSetBData;
+    private boolean needReturnR;
 
     public TelegramInputStream(long chatId) {
         super();
@@ -23,11 +24,16 @@ public class TelegramInputStream extends InputStream {
 
     public void addData(String x)
     {
+        x += "\n";
         this.data.add(x);
         canReturn = true;
     }
 
     public int read() {
+        /*if (needReturnR) {
+            needReturnR = false;
+            return '\r';
+        }*/
         while (!canReturn) {
             try {
                 Thread.sleep(100);
@@ -49,7 +55,8 @@ public class TelegramInputStream extends InputStream {
                 needSetBData = true;
                 canReturn = false;
             }
-            return '\n';
+            needReturnR = true;
+            return -1;
         }
         return bData[pointer++];
     }
