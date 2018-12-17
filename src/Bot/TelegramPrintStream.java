@@ -7,8 +7,6 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 
 public class TelegramPrintStream extends PrintStream {
-    public ArrayList<String> output;
-
     private long chatId;
 
     public TelegramPrintStream(long chatId){

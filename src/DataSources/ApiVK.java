@@ -45,16 +45,20 @@ public class ApiVK implements IDataSource {
         var response = gson.fromJson(apiVkResponse.response, Response.class);
         var result = new ArrayList<Pair<String, String>>();
         for (var itemAsJson : response.items) {
-            var item = gson.fromJson(itemAsJson, ApiVkResponseItem.class);
-            var text = item.text;
-            var attachmentAsJson = item.attachments.get(0);
-            var attachment = gson.fromJson(attachmentAsJson, Attachment.class);
-            if (attachment == null || attachment.link == null || attachment.link.get("url") == null) {
-                result.add(new Pair(text, ""));
+            try {
+                var item = gson.fromJson(itemAsJson, ApiVkResponseItem.class);
+                var text = item.text;
+                var attachmentAsJson = item.attachments.get(0);
+                var attachment = gson.fromJson(attachmentAsJson, Attachment.class);
+                if (attachment == null || attachment.link == null || attachment.link.get("url") == null) {
+                    result.add(new Pair(text, ""));
+                    continue;
+                }
+                var link = attachment.link.get("url");
+                result.add(new Pair(text, link.getAsString()));
+            } catch (NullPointerException e) {
                 continue;
             }
-            var link = attachment.link.get("url");
-            result.add(new Pair(text, link.getAsString()));
         }
         return result;
     }
@@ -62,7 +66,7 @@ public class ApiVK implements IDataSource {
     private ArrayList<Pair<String, String>> findByTag (String tag, ArrayList<Pair<String, String>> data) {
         var result = new ArrayList<Pair<String, String>>();
         for (var pair : data) {
-            if (pair.first.contains("#" + tag))
+            if (pair.first.contains("#" + tag + "@"))
                 result.add(pair);
             if (result.size() == 3)
                 return result;

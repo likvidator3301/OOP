@@ -13,8 +13,17 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Dictionary;
+import java.util.HashMap;
 
 public class Telegram extends TelegramLongPollingBot {
+
+    private HashMap<String, Runnable> threadsDict;
+
+    public Telegram() {
+        super();
+        threadsDict = new HashMap<String, Runnable>();
+    }
 
     @Override
     public String getBotUsername() {
@@ -43,13 +52,31 @@ public class Telegram extends TelegramLongPollingBot {
                     }
                 }
             });
+            threadsDict.put(chatId.toString(), myThready);
             myThready.start();
         }
         else {
-            var in = Main.telegramConsoleDictionary.get(chatId.toString()).in;
-            ((TelegramInputStream)in).addData(txt);
+            var console = Main.telegramConsoleDictionary.get(chatId.toString());
+            if (console.isRunning) {
+                var in = console.in;
+                ((TelegramInputStream)in).addData(txt);
+            } else {
+                try {
+                    console.startDialog();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+            }
         }
     }
+
+    public void StopConsole(Console console)
+    {
+        var chatId = console.chatId;
+        var thread = threadsDict.get(Long.toString(chatId));
+    }
+
+
 
     @Override
     public String getBotToken() {
