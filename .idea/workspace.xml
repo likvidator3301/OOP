@@ -2,31 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7b3a1b7a-fee9-4486-a767-0e5229b879ca" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/com_google_code_gson_gson_2_8_51.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/com_google_code_gson_gson_2_8_51.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IT Bot.iml" beforeDir="false" afterPath="$PROJECT_DIR$/IT Bot.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/info.txt" beforeDir="false" afterPath="$PROJECT_DIR$/info.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/IT Bot/Bot/Console.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/IT Bot/Bot/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/IT Bot/Bot/Telegram.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/IT Bot/Bot/TelegramInputStream.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/IT Bot/Bot/TelegramPrintStream.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/IT Bot/DataSources/ApiVK.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/IT Bot/DataSources/IDataSource.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/IT Bot/DataSources/SimpleDataSource.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/IT Bot/DataStructure/ApiVkResponse.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/IT Bot/DataStructure/ApiVkResponseItem.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/IT Bot/DataStructure/Attachment.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/IT Bot/DataStructure/Link.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/IT Bot/DataStructure/Pair.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/IT Bot/DataStructure/Response.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/IT Bot/Tests/ConsoleTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/IT Bot/Tests/JsonTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/IT Bot/Tests/StringInputStream.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/IT Bot/Tests/StringPrintStream.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/IT Bot/Utils/FileWorker.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -157,13 +132,13 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="java" value="2472" />
-          <entry key="xml" value="11" />
+          <entry key="xml" value="15" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="JAVA" value="2472" />
-          <entry key="XML" value="11" />
+          <entry key="XML" value="15" />
         </counts>
       </usages-collector>
     </session>
@@ -185,8 +160,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="266">
-              <caret line="26" column="16" selection-start-line="26" selection-start-column="16" selection-end-line="26" selection-end-column="16" />
+            <state relative-caret-position="215">
+              <caret line="17" column="32" lean-forward="true" selection-start-line="17" selection-start-column="32" selection-end-line="17" selection-end-column="32" />
             </state>
           </provider>
         </entry>
@@ -350,7 +325,7 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1545173217290" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1545174386936" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="Arquillian JUnit4" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.Arquillian JUnit4" value="" />
     <property name="create.test.in.the.same.root" value="true" />
@@ -484,7 +459,7 @@
       <workItem from="1545058594907" duration="3757000" />
       <workItem from="1545163690469" duration="2409000" />
       <workItem from="1545166553385" duration="1411000" />
-      <workItem from="1545168210411" duration="2922000" />
+      <workItem from="1545168210411" duration="3552000" />
     </task>
     <servers />
   </component>
@@ -521,13 +496,13 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="92086000" />
+    <option name="totallyTimeSpent" value="92716000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.23154363" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.23154363" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -809,8 +784,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="26" column="16" selection-start-line="26" selection-start-column="16" selection-end-line="26" selection-end-column="16" />
+        <state relative-caret-position="215">
+          <caret line="17" column="32" lean-forward="true" selection-start-line="17" selection-start-column="32" selection-end-line="17" selection-end-column="32" />
         </state>
       </provider>
     </entry>
