@@ -57,23 +57,30 @@ public class Telegram extends TelegramLongPollingBot {
         }
         else {
             var console = Main.telegramConsoleDictionary.get(chatId.toString());
-            if (console.isRunning) {
-                var in = console.in;
+            var in = console.in;
+            if (txt != null)
                 ((TelegramInputStream)in).addData(txt);
-            } else {
+            else
+                sendMsg(msg, "Да, я тоже люблю стикеры, картинки и тд, но я не умею работать с этим");
+
+            if (txt != null && txt.equals("/stop")) {
                 try {
-                    console.startDialog();
-                } catch (IOException e1) {
+                    StopConsole(console);
+                } catch (InterruptedException e1) {
                     e1.printStackTrace();
                 }
             }
         }
     }
 
-    public void StopConsole(Console console)
-    {
+    public void StopConsole(Console console) throws InterruptedException {
+        while(console.isRunning)
+            Thread.sleep(100);
         var chatId = console.chatId;
         var thread = threadsDict.get(Long.toString(chatId));
+        threadsDict.remove(Long.toString(chatId));
+        ((Thread)thread).interrupt();
+        Main.telegramConsoleDictionary.remove(Long.toString(chatId));
     }
 
 
