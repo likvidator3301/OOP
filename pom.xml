@@ -14,7 +14,7 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
                     <source>10</source>
-                    <target>11</target>
+                    <target>10</target>
                 </configuration>
             </plugin>
             <plugin>
@@ -25,7 +25,7 @@
                     <assembleDirectory>target</assembleDirectory>
                     <programs>
                         <program>
-                            <mainClass>Bot.Main</mainClass>
+                            <mainClass>src.main.java.Bot.Main</mainClass>
                             <name>workerBot</name>
                         </program>
                     </programs>
